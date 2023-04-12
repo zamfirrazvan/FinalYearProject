@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.SignUpActivity">
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        app:layout_constraintBottom_toTopOf="@+id/SignIn"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox2"
+        tools:layout_editor_absoluteX="158dp" />
+
+    <Button
+        android:id="@+id/SignIn"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:text="Already have an account? Sign in!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp"
+        tools:layout_editor_absoluteX="31dp" />
+
+    <EditText
+        android:id="@+id/emailBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:text="Email"
+        app:layout_constraintBottom_toTopOf="@+id/passwordBox"
+        app:layout_constraintTop_toBottomOf="@+id/nameBox"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <EditText
+        android:id="@+id/passwordBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:text="password"
+        app:layout_constraintBottom_toTopOf="@+id/signUp"
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <EditText
+        android:id="@+id/passwordBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:text="password"
+        app:layout_constraintBottom_toTopOf="@+id/passwordBox2"
+        app:layout_constraintTop_toBottomOf="@+id/emailBox"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <EditText
+        android:id="@+id/nameBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/emailBox"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type password"
+        app:layout_constraintBottom_toTopOf="@+id/passwordBox"
+        app:layout_constraintStart_toStartOf="@+id/passwordBox" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm password"
+        app:layout_constraintBottom_toTopOf="@+id/passwordBox2"
+        app:layout_constraintStart_toStartOf="@+id/passwordBox2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

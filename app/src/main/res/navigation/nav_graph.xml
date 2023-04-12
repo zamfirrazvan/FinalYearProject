@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mapsFragment">
+
+    <fragment
+        android:id="@+id/firstBlankFragment"
+        android:name="com.example.fypnewversion.SignUpFragment"
+        android:label="fragment_first_blank"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_firstBlankFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.fypnewversion.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_addLocationFragment"
+            app:destination="@id/addLocationFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_self"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_detailedViewFragment"
+            app:destination="@id/detailedViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.fypnewversion.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_firstBlankFragment2"
+            app:destination="@id/firstBlankFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.fypnewversion.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.fypnewversion.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_detailedViewFragment"
+            app:destination="@id/detailedViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLocationFragment"
+        android:name="com.example.fypnewversion.AddLocationFragment"
+        android:label="fragment_add_location"
+        tools:layout="@layout/fragment_add_location" >
+        <action
+            android:id="@+id/action_addLocationFragment_to_locationDetailsFragment"
+            app:destination="@id/locationDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.fypnewversion.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.example.fypnewversion.ScanFragment"
+        android:label="fragment_scan"
+        tools:layout="@layout/fragment_scan" />
+    <fragment
+        android:id="@+id/locationDetailsFragment"
+        android:name="com.example.fypnewversion.LocationDetailsFragment"
+        android:label="fragment_location_details"
+        tools:layout="@layout/fragment_location_details" >
+        <argument
+            android:name="postcode"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedViewFragment"
+        android:name="com.example.fypnewversion.DetailedViewFragment"
+        android:label="fragment_detailed_view"
+        tools:layout="@layout/fragment_detailed_view" />
+</navigation>
