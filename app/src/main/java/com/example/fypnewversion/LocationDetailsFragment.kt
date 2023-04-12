@@ -21,6 +21,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.HashMap as HashMap1
@@ -90,12 +91,12 @@ class LocationDetailsFragment : Fragment() {
             }
 
         locationDetailsBinding.saveButton.setOnClickListener {
-            val locationName = locationDetailsBinding.nameTextField.text.toString()
-            val address = locationDetailsBinding.addressTextField.text.toString()
-            val email = locationDetailsBinding.emailTextField.text.toString()
-            val phoneNumber = locationDetailsBinding.phoneTextField.text.toString()
-            val locationType = locationDetailsBinding.locationTypeDropdown.selectedItem.toString()
-            val description = locationDetailsBinding.descriptionField.text.toString()
+//            val locationName = locationDetailsBinding.nameTextField.text.toString()
+//            val address = locationDetailsBinding.addressTextField.text.toString()
+//            val email = locationDetailsBinding.emailTextField.text.toString()
+//            val phoneNumber = locationDetailsBinding.phoneTextField.text.toString()
+//            val locationType = locationDetailsBinding.locationTypeDropdown.selectedItem.toString()
+//            val description = locationDetailsBinding.descriptionField.text.toString()
 
             val calendar = Calendar.getInstance().apply {
                 set(
@@ -106,55 +107,32 @@ class LocationDetailsFragment : Fragment() {
             }
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val selectedDate = dateFormat.format(calendar.time)
-            if (locationDetailsBinding.datePicker.isVisible) {
 
-                val event = hashMapOf(
-                    "Location Name" to locationName,
-                    "Address" to address,
-                    "Postcode" to postcode,
-                    "Email" to email,
-                    "Phone number" to phoneNumber,
-                    "Location Type" to locationType,
-                    "Description" to description,
-                    "Date" to selectedDate
-                )
-                db.collection("locations").document().set(event).addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Succesfully Added!", Toast.LENGTH_SHORT)
-                        .show()
+            val location = Location(locationDetailsBinding.nameTextField.text.toString(),
+                locationDetailsBinding.addressTextField.text.toString(),
+                postcode,
+                locationDetailsBinding.emailTextField.text.toString(),
+                locationDetailsBinding.phoneTextField.text.toString(),
+                locationDetailsBinding.locationTypeDropdown.selectedItem.toString(),
+                locationDetailsBinding.descriptionField.text.toString(),
+                selectedDate
+            );
 
-                    navController.navigate(R.id.mapsFragment)
-                }.addOnFailureListener {
-                    Toast.makeText(
-                        requireContext(),
-                        "Failed to add the location!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            val event = if (locationDetailsBinding.datePicker.isVisible)
+                location.createLocation()
+            else location.createLocationWithoutDate();
 
-
-            } else {
-                val event = hashMapOf(
-                    "Location Name" to locationName,
-                    "Address" to address,
-                    "Postcode" to postcode,
-                    "Email" to email,
-                    "Phone number" to phoneNumber,
-                    "Location Type" to locationType,
-                    "Description" to description
-                )
-
-                db.collection("locations").document().set(event).addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Succesfully Added!", Toast.LENGTH_SHORT)
-                        .show()
-                    pointUser()
-                    navController.navigate(R.id.mapsFragment)
-                }.addOnFailureListener {
-                    Toast.makeText(
-                        requireContext(),
-                        "Failed to add the location!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            db.collection("locations").document().set(event).addOnSuccessListener {
+                Toast.makeText(requireContext(), "Succesfully Added!", Toast.LENGTH_SHORT)
+                    .show()
+                pointUser()
+                navController.navigate(R.id.mapsFragment)
+            }.addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Failed to add the location!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

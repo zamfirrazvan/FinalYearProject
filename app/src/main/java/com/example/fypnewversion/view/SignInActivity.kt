@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.fypnewversion.R
+import com.example.fypnewversion.User
 import com.example.fypnewversion.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -62,7 +63,6 @@ class SignInActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-
         signInBinding.googleButton.setOnClickListener {
             signInGoogle()
         }
@@ -98,18 +98,10 @@ class SignInActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
             if(it.isSuccessful)
             {
-                val name = account.displayName.toString()
-                val email= account.email.toString()
                 //Register in the database
-                val user = hashMapOf(
-                    "Name" to name,
-                    "Email" to email,
-                    "Points" to 0,
-                    "Visited" to 0,
-                    "Added" to 0
-                )
+                val user = User(account.displayName.toString(), account.email.toString(), 0, 0, 0).createUserData();
 
-                db.collection("users").document(email).set(user).addOnSuccessListener {
+                db.collection("users").document(account.email.toString()).set(user).addOnSuccessListener {
                     Toast.makeText(this,"Succesfully Added!", Toast.LENGTH_SHORT).show()
                 }
                 val intent = Intent(this, MainActivity::class.java)

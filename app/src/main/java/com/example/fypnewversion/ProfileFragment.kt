@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
         return profileBinding.root
     }
 
-    private fun pickImageFromGallery() {
+    public fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_REQUEST_CODE)
